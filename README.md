@@ -1,8 +1,16 @@
-# React + Vite
+RESONATE
+SOFTWARE ENGINEERING INTERNSHIP 2024
+TECHNICAL TEST QUESTION 2
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Mohammad Mayaz Rakib (mmrakib)
 
-Currently, two official plugins are available:
+To run this application, simply type:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+    cd resonateapp
+    npm install
+    npm run dev
+
+To log in through the mock login page, use the following details:
+
+    username: exampleuser12345
+    password: resonaterocks!
