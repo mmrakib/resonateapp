@@ -1,4 +1,5 @@
 import LoginForm from '../components/forms/LoginForm.jsx'
+import StaggerVisualizer from '../components/visuals/StaggerVisualizer.jsx'
 
 import {
     loginPageContainerStyle,
@@ -11,11 +12,7 @@ function LoginPage() {
         <>
             <div className={loginPageContainerStyle}>
                 <div>
-                    <img
-                        className={loginLogoStyle}
-                        src="./presto.svg"
-                        alt="Presto Logo"
-                    />
+                    <StaggerVisualizer />
                 </div>
                 <div className={loginFormContainerStyle}>
                     <LoginForm />

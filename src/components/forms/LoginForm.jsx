@@ -31,7 +31,7 @@ function LoginForm() {
         // NOTE:
         // This is a mock login page. The security is abysmal. Can only store one user at a time.
         if (email == storedEmail && password == storedPassword) {
-            navigate('/dashboard')
+            navigate('/contacts')
             alert('Successfully logged in!')
         } else {
             alert('Wrong username and/or password')
