@@ -1,5 +1,7 @@
 RESONATE
+
 SOFTWARE ENGINEERING INTERNSHIP 2024
+
 TECHNICAL TEST QUESTION 2
 
 Mohammad Mayaz Rakib (mmrakib)
@@ -12,5 +14,5 @@ To run this application, simply type:
 
 To log in through the mock login page, use the following details:
 
-    username: exampleuser12345
+    username: user12345@gmail.com
     password: resonaterocks!

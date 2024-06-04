@@ -25,12 +25,16 @@ function LoginForm() {
             return
         }
 
-        // NOTE: This is a mock login page. The security is abysmal.
-        if (email == 'exampleuser12345' && password == 'resonaterocks!') {
+        const storedEmail = localStorage.getItem('email');
+        const storedPassword = localStorage.getItem('password');
+
+        // NOTE:
+        // This is a mock login page. The security is abysmal. Can only store one user at a time.
+        if (email == storedEmail && password == storedPassword) {
             navigate('/dashboard')
             alert('Successfully logged in!')
         } else {
-            alert('Error while logging in.')
+            alert('Wrong username and/or password')
         }
     }
 
