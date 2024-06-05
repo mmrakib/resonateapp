@@ -5,7 +5,7 @@ import LoginForm from '../components/forms/LoginForm.jsx'
 
 import {
     loginPageContainerStyle,
-    loginLogoStyle,
+    loginMessageStyle,
     loginFormContainerStyle,
     animationContainerStyle
 } from './LoginPage.css.js'
@@ -32,8 +32,11 @@ function LoginPage() {
         <>
             <div className={loginPageContainerStyle}>
                 <div className={animationContainerStyle} ref={animationContainer}>
-
+    
                 </div>
+
+                <p className={loginMessageStyle}>A productivity app to keep everyone. Together.</p>
+
                 <div className={loginFormContainerStyle}>
                     <LoginForm />
                 </div>

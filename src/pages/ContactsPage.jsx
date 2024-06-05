@@ -1,4 +1,5 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
+
 import Contact from '../components/contacts/Contact.jsx'
 
 import {
@@ -21,8 +22,7 @@ import {
 } from './ContactsPage.css.js'
 
 function ContactsPage() {
-    const initialContactList = JSON.parse(localStorage.getItem('contacts'))
-    const [contactsList, setContactsList] = useState(initialContactList)
+    const [contactsList, setContactsList] = useState([])
 
     const [createModalIsOpen, setCreateModalIsOpen] = useState(false)
     const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false)
@@ -35,6 +35,50 @@ function ContactsPage() {
     const createModalBirthdayRef = useRef()
 
     const deleteModalNameRef = useRef()
+
+    const generateBirthday = () => {
+        const day = Math.floor(Math.random() * 28) + 1
+        const month = Math.floor(Math.random() * 12) + 1
+        const year = Math.floor(Math.random() * 50) + 1970
+
+        return `${year}-${month}-${day}`
+    }
+
+    const retrieveInitialContacts = async () => {
+        let contactsList = []
+    
+        try {
+            const response = await fetch('https://jsonplaceholder.typicode.com/users')
+    
+            if (!response.ok) {
+                throw new Error('Failed to fetch contacts.')
+            }
+    
+            const data = await response.json()
+    
+            for (let i = 0; i < data.length; i++) {
+                contactsList.push({
+                    name: data[i].name,
+                    phone: data[i].phone.split(' ')[0],
+                    email: data[i].email,
+                    birthday: generateBirthday(),
+                })
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    
+        return contactsList
+    }
+    
+    useEffect(() => {
+        const fetchContacts = async () => {
+            const initialContactList = await retrieveInitialContacts()
+            setContactsList(initialContactList)
+        }
+    
+        fetchContacts()
+    }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault()

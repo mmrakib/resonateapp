@@ -6,6 +6,8 @@ import RegisterPage from './pages/RegisterPage.jsx'
 import NoPage from './pages/NoPage.jsx'
 import ContactsPage from './pages/ContactsPage.jsx'
 
+import './App.css.js'
+
 function App() {
     return (
         <BrowserRouter>

@@ -27,3 +27,12 @@ export const animationContainerStyle = style({
     width: '50%',
     marginTop: '10%',
 })
+
+export const loginMessageStyle = style({
+    fontSize: '16px',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    margin: '0',
+    padding: '0',
+    marginBottom: '3rem',
+})
