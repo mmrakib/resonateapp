@@ -21,3 +21,9 @@ export const registerFormContainerStyle = style({
     alignItems: 'center',
     marginBottom: '200px',
 })
+
+export const animationContainerStyle = style({
+    height: '50%',
+    width: '50%',
+    marginTop: '10%',
+})
