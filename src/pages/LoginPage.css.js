@@ -26,6 +26,14 @@ export const animationContainerStyle = style({
     height: '50%',
     width: '50%',
     marginTop: '10%',
+
+    '@media': {
+        '(max-width: 768px)': {
+            marginTop: '0',
+            height: '75%',
+            width: '75%',
+        },
+    },
 })
 
 export const loginMessageStyle = style({
