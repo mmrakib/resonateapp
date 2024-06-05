@@ -15,20 +15,21 @@ import {
     contactsControlsStyle,
     contactsSearchBarStyle,
     contactsButtonsGroupStyle,
-    contactsCreateButtonStyle,
-    contactsDeleteButtonStyle,
     createModalFormStyle,
     deleteModalFormStyle
 } from './ContactsPage.css.js'
 
 function ContactsPage() {
+    /* Component state */
     const [contactsList, setContactsList] = useState([])
+    const [currentContactId, setCurrentContactId] = useState(0)
 
     const [createModalIsOpen, setCreateModalIsOpen] = useState(false)
     const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false)
 
     const [searchTerm, setSearchTerm] = useState('')
 
+    /* JSX references */
     const createModalNameRef = useRef()
     const createModalPhoneRef = useRef()
     const createModalEmailRef = useRef()
@@ -36,6 +37,7 @@ function ContactsPage() {
 
     const deleteModalNameRef = useRef()
 
+    /* Random birthday generator */
     const generateBirthday = () => {
         const day = Math.floor(Math.random() * 28) + 1
         const month = Math.floor(Math.random() * 12) + 1
@@ -44,6 +46,7 @@ function ContactsPage() {
         return `${year}-${month}-${day}`
     }
 
+    /* Fetch contacts from jsonplacholder.typicode.com as required */
     const retrieveInitialContacts = async () => {
         let contactsList = []
     
@@ -58,6 +61,7 @@ function ContactsPage() {
     
             for (let i = 0; i < data.length; i++) {
                 contactsList.push({
+                    id: data[i].id,
                     name: data[i].name,
                     phone: data[i].phone.split(' ')[0],
                     email: data[i].email,
@@ -71,10 +75,12 @@ function ContactsPage() {
         return contactsList
     }
     
+    /* Executes fetch once on component mount */
     useEffect(() => {
         const fetchContacts = async () => {
             const initialContactList = await retrieveInitialContacts()
             setContactsList(initialContactList)
+            setCurrentContactId(initialContactList.length + 1)
         }
     
         fetchContacts()
@@ -83,12 +89,14 @@ function ContactsPage() {
     const handleSubmit = (e) => {
         e.preventDefault()
 
+        /* Checks for empty fields */
         if (!createModalNameRef.current.value || !createModalPhoneRef.current.value || !createModalEmailRef.current.value || !createModalBirthdayRef.current.value) {
             alert('Please fill out all the fields.')
             return
         }
 
         const newContact = {
+            id: currentContactId + 1,
             name: createModalNameRef.current.value,
             phone: createModalPhoneRef.current.value,
             email: createModalEmailRef.current.value,
@@ -96,10 +104,12 @@ function ContactsPage() {
         }
 
         setContactsList(contactsList => [...contactsList, newContact])
+        setCurrentContactId(currentContactId + 1)
         alert('Successfully created contact!')
         setCreateModalIsOpen(false)
     }
 
+    /* Uses provided name to search for contact, deletes if found, error if not */
     const handleDelete = (e) => {
         e.preventDefault()
 
@@ -120,13 +130,24 @@ function ContactsPage() {
         setDeleteModalIsOpen(false)
     }
 
+    /* Updates search term on change */
+    const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
+    }
+
+    const filteredContactsList = contactsList.filter(contact => 
+        contact.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    console.log(filteredContactsList)
+
     return (
         <div>
             <div className={contactsControlsStyle}>
-                <Input type='text'
+                <Input 
+                    type='text'
                     className={contactsSearchBarStyle}
                     placeholder='Search...'
-                    onChange={e => setSearchTerm(e.target.value)}
+                    onChange={handleSearchChange}
                 />
                 <div className={contactsButtonsGroupStyle}>
                     <Modal
@@ -134,7 +155,7 @@ function ContactsPage() {
                         onOpen={() => setCreateModalIsOpen(true)}
                         onClose={() => setCreateModalIsOpen(false)}
                         open={createModalIsOpen}
-                        trigger={<Button color='blue' className={contactsCreateButtonStyle}>Create</Button>}
+                        trigger={<Button color='blue'>Create</Button>}
                     >
                         <Modal.Header>Create Contact</Modal.Header>
                         <Modal.Content>
@@ -172,7 +193,7 @@ function ContactsPage() {
                         onOpen={() => setDeleteModalIsOpen(true)}
                         onClose={() => setDeleteModalIsOpen(false)}
                         open={deleteModalIsOpen}
-                        trigger={<Button className={contactsDeleteButtonStyle} color='red'>Delete</Button>}
+                        trigger={<Button color='red'>Delete</Button>}
                     >
                         <Modal.Header>Delete Contact</Modal.Header>
                         <Modal.Content>
@@ -194,9 +215,9 @@ function ContactsPage() {
                 </div>
             </div>
             <div className={contactsGridStyle}>
-                {contactsList.filter(contact => contact.name.toLowerCase().includes(searchTerm.toLowerCase())).map((contact, index) => {
-                    return <Contact key={index} contact={contact} />
-                })}
+            {filteredContactsList.map((contact) => (
+                <Contact key={contact.id} contact={contact} />
+            ))}
             </div>
         </div>
     )

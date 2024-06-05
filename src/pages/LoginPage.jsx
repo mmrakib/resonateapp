@@ -14,6 +14,7 @@ function LoginPage() {
     const animationContainer = useRef()
     let animationInstance = useRef(null)
 
+    /* Lottie animation */
     useEffect(() => {
         animationInstance.current = lottie.loadAnimation({
           container: animationContainer.current,

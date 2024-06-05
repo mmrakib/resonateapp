@@ -34,14 +34,6 @@ export const contactsButtonsGroupStyle = style({
     },
 })
 
-export const contactsCreateButtonStyle = style({
-
-})
-
-export const contactsDeleteButtonStyle = style({
-
-})
-
 export const contactsGridStyle = style({
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',

@@ -22,6 +22,7 @@ function Contact({ contact }) {
     const [email, setEmail] = useState(contact.email)
     const [birthday, setBirthday] = useState(contact.birthday)
 
+    /* Toggle boolean for modal */
     const [editOpen, setEditOpen] = useState(false)
 
     return (

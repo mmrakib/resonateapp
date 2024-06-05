@@ -20,6 +20,7 @@ function LoginForm() {
     const handleSubmit = (e) => {
         e.preventDefault()
 
+        /* Check for empty fields */
         if (email === '' || password === '') {
             alert('Please enter all fields')
             return
@@ -28,8 +29,7 @@ function LoginForm() {
         const storedEmail = localStorage.getItem('email');
         const storedPassword = localStorage.getItem('password');
 
-        // NOTE:
-        // This is a mock login page. The security is abysmal. Can only store one user at a time.
+        /* This is a mock login page. The security is abysmal, and the 'backend' can only store one user at a time. */
         if (email == storedEmail && password == storedPassword) {
             navigate('/contacts')
             alert('Successfully logged in!')

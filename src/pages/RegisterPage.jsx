@@ -5,7 +5,6 @@ import RegisterForm from '../components/forms/RegisterForm.jsx'
 
 import {
     registerPageContainerStyle,
-    registerLogoStyle,
     registerFormContainerStyle,
     animationContainerStyle
 } from './RegisterPage.css.js'
@@ -14,6 +13,7 @@ function RegisterPage() {
     const animationContainer = useRef()
     let animationInstance = useRef(null)
 
+    /* Lottie animation */
     useEffect(() => {
         animationInstance.current = lottie.loadAnimation({
           container: animationContainer.current,

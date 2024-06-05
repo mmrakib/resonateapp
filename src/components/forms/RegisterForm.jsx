@@ -31,6 +31,7 @@ function RegisterForm() {
     const handleSubmit = (e) => {
         e.preventDefault()
 
+        /* Form validation */
         try {
             validateForm()
         } catch (error) {
@@ -38,6 +39,7 @@ function RegisterForm() {
             return
         }
 
+        /* Check for empty fields */
         if (
             email === '' ||
             fullname === '' ||
@@ -48,8 +50,7 @@ function RegisterForm() {
             return
         }
 
-        // NOTE:
-        // This is a mock register page. The security is abysmal. Can only store one user at a time.
+        /* This is a mock register page. The security is abysmal, and the 'backend' can only store one user at a time */
         localStorage.setItem('email', email);
         localStorage.setItem('fullname', fullname);
         localStorage.setItem('password', password);

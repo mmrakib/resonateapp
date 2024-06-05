@@ -9,11 +9,6 @@ export const registerPageContainerStyle = style({
     alignItems: 'center',
 })
 
-export const registerLogoStyle = style({
-    height: '250px',
-    width: '250px',
-})
-
 export const registerFormContainerStyle = style({
     width: '100%',
     display: 'flex',
